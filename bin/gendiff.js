@@ -6,10 +6,11 @@ import gendiff from '../src/index.js';
 const { program } = commander;
 
 program
-  .version('0.0.1', '-v, --version', 'output the version number')
+  .version('0.0.1', '-V, --version', 'output the version number')
   .description('Compares two configuration files and shows a difference.')
-  .arguments('<firstFile> <secondFile>')
-  .action((file1, file2) => {
-    gendiff(file1, file2);
+  .option('-f, --format [type]', 'output format')
+  .arguments('<filepath1> <filepath2>')
+  .action((filepath1, filepath2) => {
+    gendiff(filepath1, filepath2);
   });
 program.parse(process.argv);
