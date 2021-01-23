@@ -1,7 +1,5 @@
-import fs from 'fs';
+import parse from './parsers.js';
 import getdiff from './getdiff.js';
-
-const parse = (filepath) => JSON.parse(fs.readFileSync(filepath, 'utf-8'));
 
 const gendiff = (file1, file2) => {
   const obj1 = parse(file1);
