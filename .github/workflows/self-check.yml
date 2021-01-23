@@ -5,10 +5,15 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node
+      - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: npm install
         run: make install
       - name: Check linting
