@@ -1,0 +1,17 @@
+name: self-check
+
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+      - name: npm install
+        run: make install
+      - name: Check linting
+        run: make lint
+      - name: Test
+        run: make test

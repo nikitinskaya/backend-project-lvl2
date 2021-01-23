@@ -9,7 +9,10 @@ const diffTypes = {
 
 const getAllKeys = (obj1, obj2) => _.union(Object.keys(obj1), Object.keys(obj2)).sort();
 
-const getDiffString = (symbol, key, value) => `${symbol} ${key}: ${value}`;
+const getDiffString = (symbol, key, value) => {
+  const pad = '  ';
+  return `${pad}${symbol} ${key}: ${value}`;
+};
 
 const printdiff = (diffObj) => {
   const diffText = diffObj.flatMap((item) => {
@@ -34,7 +37,8 @@ const printdiff = (diffObj) => {
       }
     }
   });
-  return diffText.join('\n');
+  const result = `{\n${diffText.join('\n')}\n}`;
+  return result;
 };
 
 const getdiff = (obj1, obj2) => {
