@@ -4,7 +4,7 @@ import diffTypes from '../common.js';
 const getDiffString = (level, symbol, key, value) => {
   const pad = ' '.repeat(level);
   if (!_.isObject(value)) {
-    return `${pad}${symbol} ${key}: ${value}`.trimRight();
+    return `${pad}${symbol} ${key}: ${value}`;
   }
   const childValue = Object.keys(value)
     .map((childKey) => getDiffString(level + 4, ' ', childKey, value[childKey]))
