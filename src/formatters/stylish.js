@@ -7,8 +7,7 @@ const getDiffString = (level, symbol, key, value) => {
     return `${pad}${symbol} ${key}: ${value}`;
   }
   const childValue = Object.keys(value)
-    .map((childKey) => getDiffString(level + 4, ' ', childKey, value[childKey]))
-    .sort();
+    .map((childKey) => getDiffString(level + 4, ' ', childKey, value[childKey]));
   return `${' '.repeat(level)}${symbol} ${key}: {\n${childValue}\n${' '.repeat(level + 2)}}`;
 };
 
