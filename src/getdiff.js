@@ -1,58 +1,23 @@
 import _ from 'lodash';
-
-const diffTypes = {
-  added: 'added',
-  removed: 'removed',
-  equal: 'equal',
-  changed: 'changed',
-};
+import diffTypes from './common.js';
 
 const getAllKeys = (obj1, obj2) => _.union(Object.keys(obj1), Object.keys(obj2)).sort();
-
-const getDiffString = (symbol, key, value) => {
-  const pad = '  ';
-  return `${pad}${symbol} ${key}: ${value}`;
-};
-
-const printdiff = (diffObj) => {
-  const diffText = diffObj.flatMap((item) => {
-    const {
-      key, type, newValue, oldValue,
-    } = item;
-    switch (type) {
-      case diffTypes.added: {
-        return getDiffString('+', key, newValue);
-      }
-      case diffTypes.removed: {
-        return getDiffString('-', key, oldValue);
-      }
-      case diffTypes.equal: {
-        return getDiffString(' ', key, oldValue);
-      }
-      case diffTypes.changed: {
-        return [getDiffString('-', key, oldValue), getDiffString('+', key, newValue)];
-      }
-      default: {
-        throw new Error(`Unexpected value of property 'type': '${type}'!`);
-      }
-    }
-  });
-  const result = `{\n${diffText.join('\n')}\n}`;
-  return result;
-};
 
 const getdiff = (obj1, obj2) => {
   const keys = getAllKeys(obj1, obj2);
   const result = keys.map((key) => {
+    if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
+      return { key, type: diffTypes.nested, children: getdiff(obj1[key], obj2[key]) };
+    }
     if (!_.has(obj1, key)) {
       return { key, type: diffTypes.added, newValue: obj2[key] };
     }
     if (!_.has(obj2, key)) {
-      return { key, type: diffTypes.removed, oldValue: obj1[key] };
+      return { key, type: diffTypes.removed, newValue: obj1[key] };
     }
     if (obj1[key] === obj2[key]) {
       return {
-        key, type: diffTypes.equal, oldValue: obj1[key],
+        key, type: diffTypes.equal, newValue: obj2[key], oldValue: obj1[key],
       };
     }
     return {
@@ -60,7 +25,7 @@ const getdiff = (obj1, obj2) => {
     };
   });
 
-  return printdiff(result);
+  return result;
 };
 
 export default getdiff;
