@@ -21,7 +21,7 @@ const printPlain = (data, ancestry = '') => data.map((item) => {
       return printPlain(children, currentKey);
     }
     case diffTypes.removed: {
-      return `Property '${currentKey}' was deleted`;
+      return `Property '${currentKey}' was removed`;
     }
     case diffTypes.added: {
       const currValue = getValue(newValue);
@@ -30,15 +30,17 @@ const printPlain = (data, ancestry = '') => data.map((item) => {
     case diffTypes.changed: {
       const currNewValue = getValue(newValue);
       const currOldValue = getValue(oldValue);
-      return `Property '${currentKey}' was changed from ${currOldValue} to ${currNewValue}`;
+      return `Property '${currentKey}' was updated. From ${currOldValue} to ${currNewValue}`;
     }
     case diffTypes.equal: {
-      return `Property '${currentKey}' was not changed`;
+      return null;
     }
     default: {
       throw new Error(`ERROR! Unexpected value of property 'type': '${type}'!`);
     }
   }
-}).join('\n');
+})
+  .filter((val) => val)
+  .join('\n');
 
 export default (diffObj) => printPlain(diffObj);
