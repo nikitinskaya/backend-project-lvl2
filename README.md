@@ -7,3 +7,10 @@
 [![asciicast](https://asciinema.org/a/NM6UmTiEcYw9c9gZtOCh4XexQ.svg)](https://asciinema.org/a/NM6UmTiEcYw9c9gZtOCh4XexQ)
 #### yaml
 [![asciicast](https://asciinema.org/a/kkOdskd2kCQxyifwYuUzbL6yZ.svg)](https://asciinema.org/a/kkOdskd2kCQxyifwYuUzbL6yZ)
+### Nested diffs
+#### Plain
+[![asciicast](https://asciinema.org/a/rDZvXAxwcZYVmtdsCzj8B5fwC.svg)](https://asciinema.org/a/rDZvXAxwcZYVmtdsCzj8B5fwC)
+#### Stylish 
+[![asciicast](https://asciinema.org/a/8G7q0341FQ0S2vvmvBstKjCMX.svg)](https://asciinema.org/a/8G7q0341FQ0S2vvmvBstKjCMX)
+#### json
+[![asciicast](https://asciinema.org/a/cAQk2P3xqUd7HxWM4OvTQR1z2.svg)](https://asciinema.org/a/cAQk2P3xqUd7HxWM4OvTQR1z2)
