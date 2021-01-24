@@ -1,7 +1,10 @@
 import _ from 'lodash';
 import diffTypes from './common.js';
 
-const getAllKeys = (obj1, obj2) => _.union(Object.keys(obj1), Object.keys(obj2)).sort();
+const getAllKeys = (obj1, obj2) => {
+  const keys = _.union(Object.keys(obj1), Object.keys(obj2));
+  return _.sortBy(keys);
+};
 
 const getdiff = (obj1, obj2) => {
   const keys = getAllKeys(obj1, obj2);
