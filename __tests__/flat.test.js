@@ -7,6 +7,8 @@ const cases = [
   ['.yml', 'plain'],
   ['.json', 'stylish'],
   ['.yml', 'stylish'],
+  ['.json', 'json'],
+  ['.yml', 'json'],
 ];
 
 const getFilePath = (name, ext = '.json') => `__tests__/__fixtures__/${name}${ext}`;
